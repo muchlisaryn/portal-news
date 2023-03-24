@@ -52,55 +52,53 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (value?.length > 1) {
+    if (value?.length > 0) {
       searchNews();
     } else {
       fetchData();
     }
   }, [value]);
 
-  console.log(error);
   return (
     <div>
       <Navbar setValue={setValue} onClick={searchNews} />
-      <div className="container">
-        <div className=" my-4 text-center ">
-          {value?.length ? (
-            <div>Hasil Pencarian "{value}"</div>
-          ) : (
-            <>
-              <div className="fw-bold">WELLCOME PORTAL NEWS</div>
-              <div className="fw-bold">
-                (isi form "search" untuk mencari berita)
-              </div>
-            </>
-          )}
-        </div>
 
-        {loading ? (
-          <div className="text-center">Loding...</div>
+      <div className=" my-4 text-center ">
+        {value?.length ? (
+          <div>Hasil Pencarian "{value}"</div>
         ) : (
           <>
-            {news?.length >= 4 ? (
-              <BoxContainer>
-                {news?.map((list, index) => (
-                  <NewsCard
-                    key={index}
-                    title={list.content}
-                    desc={list.description}
-                    image={list.urlToImage}
-                    url={list.url}
-                  />
-                ))}
-              </BoxContainer>
-            ) : (
-              <div className="text-center bg-danger text-light">
-                Berita "{value}" tidak ditemukan
-              </div>
-            )}
+            <div className="fw-bold">WELLCOME PORTAL NEWS</div>
+            <div className="fw-bold">
+              (isi form "search" untuk mencari berita)
+            </div>
           </>
         )}
       </div>
+
+      {loading ? (
+        <div className="text-center">Loding...</div>
+      ) : (
+        <>
+          {news?.length >= 4 ? (
+            <BoxContainer>
+              {news?.map((list, index) => (
+                <NewsCard
+                  key={index}
+                  title={list.content}
+                  desc={list.description}
+                  image={list.urlToImage}
+                  url={list.url}
+                />
+              ))}
+            </BoxContainer>
+          ) : (
+            <div className="text-center bg-danger text-light">
+              Berita "{value}" tidak ditemukan
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
