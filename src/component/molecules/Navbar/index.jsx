@@ -1,13 +1,8 @@
 import Logo from "../../atoms/Logo";
 
-export default function Navbar({ setValue }) {
+export default function Navbar({ setValue, onClick }) {
   const search = (e) => {
     setValue(e.target.value);
-  };
-
-  const searchClick = (e) => {
-    e.preventDefault();
-    alert("Ga bisa di klik");
   };
 
   return (
@@ -22,7 +17,7 @@ export default function Navbar({ setValue }) {
             aria-label="Search"
             onChange={search}
           />
-          <button className="btn btn-primary" onClick={searchClick}>
+          <button className="btn btn-primary" onClick={onClick}>
             Search
           </button>
         </form>
